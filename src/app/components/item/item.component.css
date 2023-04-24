@@ -4,6 +4,13 @@
     justify-content: center;
     align-items: center;
 }
+.completed{
+    text-decoration: line-through;
+    color: #ccc;
+}
+.completed .total{
+    color: #ccc;
+}
 div{
     padding: 5px 0;
 }

@@ -8,6 +8,7 @@ import { Item } from "../../models/item"
 })
 export class ItemsComponent implements OnInit{
   items: Item[] = [];
+  total: number = 0;
   constructor(){}
   ngOnInit(): void {
     this.items = [
@@ -33,9 +34,21 @@ export class ItemsComponent implements OnInit{
         completed: true
       }
     ];
+    this.getTotal();
   }
   deleteItem(item: Item){
     this.items = this.items.filter(x => x.id !== item.id);
+    this.getTotal();
   }
+  toggleItem(item:Item){
+    this.getTotal();
+  }
+  getTotal(){
+    this.total = this.items
+                  .filter(x => !x.completed)
+                  .map(item => item.quantity * item.price)
+                  .reduce((acumulador, item) => acumulador += item, 0);
+  }
+
 }
 
